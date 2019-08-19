@@ -1,20 +1,13 @@
 package com.itstyle.modules.weixinpay.controller;
+import com.itstyle.common.constants.Constants;
+import com.itstyle.common.model.Product;
+import com.itstyle.modules.weixinpay.service.IWeixinPayService;
+import com.itstyle.modules.weixinpay.util.ConfigUtil;
+import com.itstyle.modules.weixinpay.util.HttpUtil;
+import com.itstyle.modules.weixinpay.util.PayCommonUtil;
+import com.itstyle.modules.weixinpay.util.XMLUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +17,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.itstyle.common.constants.Constants;
-import com.itstyle.common.model.Product;
-import com.itstyle.modules.weixinpay.service.IWeixinPayService;
-import com.itstyle.modules.weixinpay.util.ConfigUtil;
-import com.itstyle.modules.weixinpay.util.HttpUtil;
-import com.itstyle.modules.weixinpay.util.PayCommonUtil;
-import com.itstyle.modules.weixinpay.util.XMLUtil;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.*;
 /**
  * 微信支付
  * 创建者 科帮网
@@ -64,7 +57,7 @@ public class WeixinPayController {
 		//参数自定义  这只是个Demo
 		product.setProductId("20170721");
 		product.setBody("两个苹果八毛钱 ");
-		product.setSpbillCreateIp("192.168.1.66");
+		product.setSpbillCreateIp("192.168.137.1");
 		String message  =  weixinPayService.weixinPay2(product);
 		if(Constants.SUCCESS.equals(message)){
 			String img= "../qrcode/"+product.getOutTradeNo()+".png";
@@ -202,7 +195,7 @@ public class WeixinPayController {
     		params.put("body", "模式一扫码支付");// 商品描述
     		params.put("out_trade_no", out_trade_no);// 商户订单号
     		params.put("total_fee", "100");// 总金额
-    		params.put("spbill_create_ip", "192.168.1.66");// 发起人IP地址
+    		params.put("spbill_create_ip", "192.168.137.1");// 发起人IP地址
     		params.put("notify_url", notify_url);// 回调地址
     		params.put("trade_type", "NATIVE");// 交易类型
     		
