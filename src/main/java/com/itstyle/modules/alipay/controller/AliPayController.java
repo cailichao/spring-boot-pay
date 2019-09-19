@@ -1,25 +1,5 @@
 package com.itstyle.modules.alipay.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-
-import java.io.BufferedOutputStream;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.demo.trade.config.Configs;
@@ -27,6 +7,24 @@ import com.itstyle.common.constants.Constants;
 import com.itstyle.common.model.Product;
 import com.itstyle.modules.alipay.service.IAliPayService;
 import com.itstyle.modules.alipay.util.AliPayConfig;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 /**
  * 支付宝支付
  * 创建者 科帮网
@@ -186,4 +184,18 @@ public class AliPayController {
 		//支付成功、跳转到成功页面
 		return "success.html";
 	}
+
+
+	@GetMapping("/helloworld")
+	public String helloworld() throws Exception{
+		Logger log = LogUtils.getExceptionLogger();
+		Logger log1 = LogUtils.getBussinessLogger();
+		Logger log2 = LogUtils.getDBLogger();
+//		userService.queryUser();
+		log.error("getExceptionLogger===日志测试");
+		log1.info("getBussinessLogger===日志测试");
+		log2.debug("getDBLogger===日志测试");
+		return "helloworld";
+	}
+
 }

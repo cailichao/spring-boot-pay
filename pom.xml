@@ -27,7 +27,20 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<!-- 切换log4j2日志读取 -->
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -40,11 +53,11 @@
 		<!-- 再次声明，此SDK需要自行下载，打入本地仓库或者私服！！！！-->
 		<!-- 支付宝 SDK(项目中的支付宝SDk需要自行去官网下载打入本地仓库或者私服)-->
 		<!-- 项目中的支付宝SDk需要自行去官网下载打入本地仓库或者私服，提供下载地址：https://pan.baidu.com/s/1B2_uyrz2uKN1Z_Ivbv7lgw -->
-		<dependency>
-		    <groupId>vip.52itstyle</groupId>
-		    <artifactId>alipay-trade-sdk</artifactId>
-		    <version>1.0.0</version>
-		</dependency>
+<!--		<dependency>-->
+<!--		    <groupId>vip.52itstyle</groupId>-->
+<!--		    <artifactId>alipay-trade-sdk</artifactId>-->
+<!--		    <version>1.0.0</version>-->
+<!--		</dependency>-->
 		<!-- 官方SDK  https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
 		<dependency>
 			<groupId>com.alipay.sdk</groupId>
@@ -197,11 +210,14 @@
                 </executions>
 				<dependencies>
 					<!-- mvn spring-boot:run 热部署启动 -->
+					<!-- https://mvnrepository.com/artifact/org.springframework/springloaded -->
 					<dependency>
 						<groupId>org.springframework</groupId>
 						<artifactId>springloaded</artifactId>
 						<version>1.2.7.RELEASE</version>
+						<scope>provided</scope>
 					</dependency>
+
 				</dependencies>
 			</plugin>
 			<!-- 邮件服务接口 -->
